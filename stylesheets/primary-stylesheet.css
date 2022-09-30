@@ -1,0 +1,118 @@
+/* Color settings */
+:root {
+    --body-outline: #ffffff;
+    --text-color-default: #ffffff;
+    --background-color: #131416;
+    --primary-color: #530404;
+    --secondary-color: #ffffff;
+    --link-focus: #0000ff;
+    --link-color: #ff0000;
+}
+/* Remove default margins */
+body, h1, h2, h3, h4, p, ul[class], ol[class], li, figure, figcaption, dl, dd {
+    margin: 0;
+}
+/* Default font size and smooth scrolling */
+html {
+    font-size: 1.2rem;
+}
+@media (prefers-reduced-motion: no-preference) {
+    html {
+        scroll-behavior: smooth;
+    }
+}
+body {
+    font-family: monospace !important;
+    line-height: 1.5;
+    margin: 2% auto !important;
+    border: 2px solid var(--body-outline);
+    max-width: 100ch;
+    min-height: 0vh;
+    overflow-x: hidden;
+    padding: 2rem 1.25rem;
+    color: var(--text-color-default);
+    background-color: var(--background-color);
+    text-rendering: optimizeLegibility;
+  }
+p {
+    text-align: justify;
+    hyphens: auto;
+    -webkit-hyphens: auto;
+    -moz-hyphens: auto;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+a, a:visited {
+    color: var(--link-color);
+    font-family: monospace;
+    text-decoration: none;
+}
+a:focus {
+    outline-offset: 2px;
+    outline: 2px solid var(--link-focus);
+}
+a:hover {
+    color: var(--background-color);
+    background-color: var(--text-color-default);
+}
+h1 {
+    font-size: 1.7rem;
+    line-height: 2rem;
+    background-color: var(--primary-color);
+    color: var(--text-color-default);
+    padding: 2%;    
+}
+h2 {
+    text-align: center;
+    font-size: 1rem;
+    line-height: 0.5rem;
+    background-color: var(--secondary-color);
+    color: var(--background-color);
+    padding: 1%;
+    margin-top: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+.topbar {
+    margin-top: 1rem;
+    margin-bottom: 1rem;  
+}
+span {
+    margin-top: 1rem;
+    margin-bottom: 1rem;  
+}
+input[type=submit] {
+    background-color: var(--primary-color);
+    border: none;
+    color: white;
+    text-align: center;
+    font-family: monospace;
+    font-size: 0.75rem;
+    padding: 1%;
+    cursor: pointer;
+}
+input[type=submit]:hover, input[type=submit]:focus {
+    color: black !important;
+    background-color: white !important;
+}
+input[type=text] {
+    background: #262626;
+    color: white;
+    border: 1px solid white;
+    text-align: left;
+    font-family: monospace;
+    font-size: 0.75rem;
+    padding: 1%;
+    width: 50%;
+    font-size: 0.75rem;
+}
+input[type=password] {
+    background: #262626;
+    color: white;
+    border: 1px solid white;
+    text-align: left;
+    font-family: monospace;
+    font-size: 0.75rem;
+    padding: 1%;
+    width: 50%;
+    font-size: 0.75rem;
+}
