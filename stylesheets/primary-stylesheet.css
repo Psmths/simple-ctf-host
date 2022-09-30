@@ -116,3 +116,58 @@ input[type=password] {
     width: 50%;
     font-size: 0.75rem;
 }
+table {
+    width: 100%;
+    font-size: 1rem;
+}
+tr, td, th { 
+    border: 1px solid #131416;
+    padding: 1%;
+    font-family: monospace;
+}
+th {
+    background-color: #530404;
+    text-align: center;
+    font-size: 1rem;
+}
+tr, td {
+    background-color: #1e2124;
+}
+.status {
+    width: 10%;
+    text-align: center;
+}
+.name {
+    text-align: left;
+    width: 20%;
+}
+.topic {
+    width: 20%;
+    text-align: left;
+}
+.difficulty {
+    width: 20%;
+    font-size: 1.7em;
+    text-align: left;
+}
+.points {
+    width: 10%;
+    text-align: center;
+}
+.solves {
+    width: 10%;
+    text-align: center;
+}
+.position {
+    text-align: center;
+    width: 10%;
+    font-size: 1.7em;
+}
+.username {
+    text-align: left;
+    width: 80%;
+}
+.score {
+    text-align: center;
+    width: 10%;
+}
