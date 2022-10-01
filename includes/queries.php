@@ -116,6 +116,15 @@
         return $result;
     }
 
+    /* Get an array of all challenges */
+    function query_all_challenges() {
+        $sql = 'SELECT * FROM challenges';
+        $statement = db()->prepare($sql);
+        $statement->execute();
+        $result = $statement->fetchAll();
+        return $result;
+    }
+
     /* Query to get a sorted leaderboard array */
     function get_leaderboard_array() {
         $leaderboard_array = array();

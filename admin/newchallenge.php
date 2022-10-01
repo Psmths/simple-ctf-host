@@ -1,7 +1,4 @@
 <?php
-    // #TODO: Allow the admins to enter HTML or BBcode for the challenge text?
-    // #TODO: File upload logic?
-
     require_once "../includes/config.php";
     require_once "../includes/db.php";
     require_once "../includes/helpers.php";

@@ -31,6 +31,8 @@
     <h3>Administrative Activities</h3>
     <ul>
         <li><a href="/admin/newchallenge.php">Create a new challenge</a></li>
+        <li><a href="/admin/modifychallenge.php">Modify challenges</a></li>
+        <li><a href="/admin/deletechallenge.php">Delete challenges</a></li>
     </ul>
 
     

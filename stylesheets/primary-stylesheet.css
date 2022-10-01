@@ -139,6 +139,17 @@ input[type=password] {
     width: 50%;
     font-size: 0.75rem;
 }
+select {
+    background: #262626;
+    color: white;
+    border: 1px solid white;
+    text-align: left;
+    font-family: monospace;
+    font-size: 0.75rem;
+    padding: 1%;
+    width: 50%;
+    font-size: 0.75rem;
+}
 table {
     width: 100%;
     font-size: 1rem;
