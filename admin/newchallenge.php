@@ -120,20 +120,20 @@
 
     <center>
         <form action="/admin/newchallenge.php" method="post" autocomplete="off" style='display: inline' enctype="multipart/form-data">
-            <input type="text" name="name" placeholder="Challenge Name" <?php echo("value=\"".$_SESSION['form_name']."\""); ?> id="name"><br><br>
+            <input type="text" name="name" placeholder="Challenge Name" <?php echo("value=\"".$_SESSION['form_name']."\""); ?> id="name" required><br><br>
 
             <textarea type="text" name="text" placeholder="Challenge Text"id="text"><?php echo($_SESSION['form_text']); ?></textarea><br><br>
 
-            <input type="text" name="category" placeholder="Challenge Category" <?php echo("value=\"".$_SESSION['form_category']."\""); ?> id="category"><br><br>
+            <input type="text" name="category" placeholder="Challenge Category" <?php echo("value=\"".$_SESSION['form_category']."\""); ?> id="category" required><br><br>
 
-            <input type="text" name="subcategory" placeholder="Challenge Topic" <?php echo("value=\"".$_SESSION['form_subcategory']."\""); ?> id="subcategory"><br><br>
+            <input type="text" name="subcategory" placeholder="Challenge Topic" <?php echo("value=\"".$_SESSION['form_subcategory']."\""); ?> id="subcategory" required><br><br>
 
-            <input type="text" name="difficulty" placeholder="Difficulty (0-5)" <?php echo("value=\"".$_SESSION['form_difficulty']."\""); ?> id="difficulty"><br><br>
+            <input type="text" name="difficulty" placeholder="Difficulty (0-5)" <?php echo("value=\"".$_SESSION['form_difficulty']."\""); ?> id="difficulty" required><br><br>
 
-            <input type="text" name="flag" placeholder="Challenge Flag" <?php echo("value=\"".$_SESSION['form_flag']."\""); ?> id="flag"><br><br>
+            <input type="text" name="flag" placeholder="Challenge Flag" <?php echo("value=\"".$_SESSION['form_flag']."\""); ?> id="flag" required><br><br>
 
             <center>
-                <span>Challenge files:</span><br><br>
+                <span>Challenge Files (Optional)</span><br><br>
             </center>
             <input type="file" name="challenge_files"/><br><br>
 

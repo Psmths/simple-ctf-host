@@ -3,7 +3,7 @@
     function query_user_exists($user_id) {
         $sql = 'SELECT * FROM accounts WHERE id=:user_id';
         $statement = db()->prepare($sql);
-        $statement->bindValue(':user_id', $user_id, PDO::PARAM_INT);
+        $statement->bindValue('user_id', $user_id, PDO::PARAM_INT);
         $statement->execute();
         if ($statement->rowCount() == 0) {
             return false;
@@ -16,7 +16,7 @@
     function query_challenge_exists($challenge_id) {
         $sql = 'SELECT * FROM challenges WHERE id=:challenge_id';
         $statement = db()->prepare($sql);
-        $statement->bindValue(':challenge_id', $challenge_id, PDO::PARAM_INT);
+        $statement->bindValue('challenge_id', $challenge_id, PDO::PARAM_INT);
         $statement->execute();
         if ($statement->rowCount() == 0) {
             return false;
@@ -35,7 +35,7 @@
         // Perform DB operation to get challenge difficulty
         $sql = 'SELECT difficulty FROM challenges WHERE id=:challenge_id';
         $statement = db()->prepare($sql);
-        $statement->bindValue(':challenge_id', $challenge_id, PDO::PARAM_INT);
+        $statement->bindValue('challenge_id', $challenge_id, PDO::PARAM_INT);
         $statement->execute();
         $result = $statement->fetch();
         $challenge_difficulty = $result["difficulty"];
@@ -54,7 +54,7 @@
         // Perform DB operation to get solved challenge ids
         $sql = 'SELECT challenge_id FROM solves WHERE user_id=:user_id';
         $statement = db()->prepare($sql);
-        $statement->bindValue(':user_id', $user_id, PDO::PARAM_INT);
+        $statement->bindValue('user_id', $user_id, PDO::PARAM_INT);
         $statement->execute();
         $result = $statement->fetchAll(PDO::FETCH_COLUMN, 0);
         return $result;
@@ -70,7 +70,7 @@
         // Perform DB operation to get solved challenge ids
         $sql = 'SELECT * FROM solves WHERE challenge_id=:challenge_id';
         $statement = db()->prepare($sql);
-        $statement->bindValue(':challenge_id', $challenge_id, PDO::PARAM_INT);
+        $statement->bindValue('challenge_id', $challenge_id, PDO::PARAM_INT);
         $statement->execute();
         $result = $statement->fetchAll(PDO::FETCH_COLUMN, 0);
         return sizeof($result);
@@ -86,8 +86,8 @@
         // Perform DB operation to get solved challenge ids
         $sql = 'SELECT * FROM solves WHERE user_id=:user_id AND challenge_id=:challenge_id';
         $statement = db()->prepare($sql);
-        $statement->bindValue(':user_id', $user_id, PDO::PARAM_INT);
-        $statement->bindValue(':challenge_id', $challenge_id, PDO::PARAM_INT);
+        $statement->bindValue('user_id', $user_id, PDO::PARAM_INT);
+        $statement->bindValue('challenge_id', $challenge_id, PDO::PARAM_INT);
         $statement->execute();
         if ($statement->rowCount() == 0) {
             return false;
@@ -149,7 +149,7 @@
     function user_id_to_name($user_id) {
         $sql = 'SELECT username FROM accounts WHERE id=:user_id';
         $statement = db()->prepare($sql);
-        $statement->bindValue(':user_id', $user_id, PDO::PARAM_INT);
+        $statement->bindValue('user_id', $user_id, PDO::PARAM_INT);
         $statement->execute();
         $result = $statement->fetch();
         return $result["username"];
@@ -159,7 +159,7 @@
     function challenge_name_to_id($challenge_name) {
         $sql = 'SELECT id FROM challenges WHERE name=:challenge_name';
         $statement = db()->prepare($sql);
-        $statement->bindValue(':challenge_name', $challenge_name, PDO::PARAM_INT);
+        $statement->bindValue('challenge_name', $challenge_name, PDO::PARAM_INT);
         $statement->execute();
         $result = $statement->fetch();
         return $result["id"];
@@ -181,7 +181,7 @@
         $category_array = array();
         $sql = 'SELECT * FROM challenges WHERE category=:category';
         $statement = db()->prepare($sql);
-        $statement->bindValue(':category', $category, PDO::PARAM_STR);
+        $statement->bindValue('category', $category, PDO::PARAM_STR);
         $statement->execute();
         $category_array = $statement->fetchAll();
         // Sort by difficulty
