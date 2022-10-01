@@ -3,6 +3,7 @@
     require_once "./includes/db.php";
     require_once "./includes/config.php";
     require_once "./includes/queries.php";
+    require_once "./includes/helpers.php";
 ?>
 <!doctype html>
 <html lang='en-US'>
@@ -52,7 +53,7 @@
 
                         echo("<td class=\"name\"><a href=\"/challenge/?id=".$challenge_id."\">".$challenge["name"]."</a></td>");
                         echo("<td class=\"topic\">".$challenge["subcategory"]."</td>");
-                        echo("<td class=\"difficulty\">".$challenge["difficulty"]."</td>");
+                        echo("<td class=\"difficulty\">".format_difficulty($challenge["difficulty"])."</td>");
 
                         $challenge_points_value = query_challenge_points($challenge_id);
                         echo("<td class=\"points\">".$challenge_points_value."</td>");

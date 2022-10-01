@@ -22,6 +22,10 @@
         create_new_challenge();
     } else {
         // These session variables save form input for convenience.
+        unset_returns();
+    }
+
+    function unset_returns() {
         unset($_SESSION['form_name']);
         unset($_SESSION['form_text']);
         unset($_SESSION['form_category']);
@@ -83,18 +87,23 @@
         // Connect to database and get the new challenge's ID
         $new_challenge_id = challenge_name_to_id($client_name);
 
-        // Add files to db
-        if (!empty($_FILES["challenge_files"])) {
-            $fp = fopen($_FILES['challenge_files']["tmp_name"], 'rb');
-            var_dump($fp);
+        // Add files to db if they were sent
+        // Not sent would be indicated by error = int(4)
+        if (!($_FILES["challenge_files"]["error"] == 4)) {
+            // Transfer file to the specified storage directory
+            $file_name = $_FILES["challenge_files"]["name"];
+            $file_tmp_path = $_FILES["challenge_files"]["tmp_name"];
+            $final_file_path = FILE_STORE_DIRECTORY.$file_name;
+            rename($file_tmp_path, $final_file_path);
             // Connect to database and add the new file
-            $sql = 'INSERT INTO challenge_files(challenge_id, blob) VALUES(:challenge_id, :blob)';
+            $sql = 'INSERT INTO challenge_files(challenge_id, location) VALUES(:challenge_id, :location)';
             $statement = db()->prepare($sql);
             $statement->bindValue(':challenge_id', $new_challenge_id, PDO::PARAM_INT);
-            $statement->bindValue(':blob', $fp, PDO::PARAM_LOB);
+            $statement->bindValue(':location', $final_file_path, PDO::PARAM_STR);
             $statement->execute();
         }
 
+        unset_returns();
         $_SESSION['return_msg'] = "Challenge added! You may view it <a href=\"/challenge?id=".$new_challenge_id."\">here</a>.";
     }
     
@@ -137,7 +146,7 @@
 
     <?php
         if(!empty($_SESSION['return_msg'])){
-            echo("<center><span>".$_SESSION['return_msg']."</span></center>");
+            create_modal($_SESSION['return_msg']);
             unset($_SESSION['return_msg']);
         }
     ?>

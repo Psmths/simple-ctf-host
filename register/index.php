@@ -52,7 +52,6 @@
 
         // Get timestamp
         $timestamp = date('Y-m-d H:i:s');
-        $timestamp = $timestamp->format('c');
         
         // Connect to database and add the new account
         $sql = 'INSERT INTO accounts(username, password_hash, registration_time, last_logon) VALUES(:username, :password_hash, :registration_time, :last_logon)';

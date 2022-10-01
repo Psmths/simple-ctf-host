@@ -25,9 +25,10 @@ CREATE TABLE IF NOT EXISTS `challenges` (
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
 CREATE TABLE IF NOT EXISTS `challenge_files` (
+	`id` int(11) NOT NULL AUTO_INCREMENT,
 	`challenge_id` int(11) NOT NULL,
 	`location` TINYTEXT NOT NULL,
-    PRIMARY KEY (`challenge_id`)
+    PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
 CREATE TABLE IF NOT EXISTS `solves` (
@@ -38,3 +39,6 @@ CREATE TABLE IF NOT EXISTS `solves` (
     PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 ```
+
+# Promote a User to Administrator
+UPDATE accounts SET is_admin=1 WHERE id=2;
