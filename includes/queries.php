@@ -146,6 +146,16 @@
         return $result["username"];
     }
 
+    /* Query to get a challenge ID from its name */
+    function challenge_name_to_id($challenge_name) {
+        $sql = 'SELECT id FROM challenges WHERE name=:challenge_name';
+        $statement = db()->prepare($sql);
+        $statement->bindValue(':challenge_name', $challenge_name, PDO::PARAM_INT);
+        $statement->execute();
+        $result = $statement->fetch();
+        return $result["id"];
+    }
+
     /* Query to get unique categories */
     function get_categories_array() {
         $sql = 'SELECT category FROM challenges';

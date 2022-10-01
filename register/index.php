@@ -51,7 +51,7 @@
         $client_hashed_password = password_hash($client_password, PASSWORD_BCRYPT);
 
         // Get timestamp
-        $timestamp = new DateTime();
+        $timestamp = date('Y-m-d H:i:s');
         $timestamp = $timestamp->format('c');
         
         // Connect to database and add the new account
@@ -59,8 +59,8 @@
         $statement = db()->prepare($sql);
         $statement->bindValue(':username', $client_username, PDO::PARAM_STR);
         $statement->bindValue(':password_hash', $client_hashed_password, PDO::PARAM_STR);
-        $statement->bindValue(':registration_time', $timestamp, PDO::PARAM_INT);
-        $statement->bindValue(':last_logon', $timestamp, PDO::PARAM_INT);
+        $statement->bindValue(':registration_time', $timestamp, PDO::PARAM_STR);
+        $statement->bindValue(':last_logon', $timestamp, PDO::PARAM_STR);
         $statement->execute();
 
         $_SESSION['return_msg'] = "Registration successful! You may continue to <a href=\"/login\">login</a>.";

@@ -30,7 +30,7 @@
         }
         
         // Connect to database and get credentials
-        $sql = 'SELECT password_hash, id, last_logon FROM accounts WHERE username = :username';
+        $sql = 'SELECT password_hash, id, last_logon, is_admin FROM accounts WHERE username = :username';
         $statement = db()->prepare($sql);
         $statement->bindValue(':username', $client_username, PDO::PARAM_STR);
         $statement->execute();
@@ -39,6 +39,7 @@
         $db_password_hash = $result["password_hash"];
         $db_user_id = $result["id"];
         $db_last_logon =  $result["last_logon"];
+        $is_admin =  $result["is_admin"];
 
         $password_correct = password_verify($client_password, $db_password_hash);
 
@@ -48,12 +49,12 @@
         }
 
         // Get timestamp and update last logon
-        $timestamp = new DateTime();
-        $timestamp = $timestamp->format('c');
+        $timestamp = date('Y-m-d H:i:s');
+
         $sql = 'UPDATE accounts SET last_logon=TIMESTAMP(:last_logon) WHERE id=:id';
         $statement = db()->prepare($sql);
         $statement->bindValue(':id', $db_user_id, PDO::PARAM_INT);
-        $statement->bindValue(':last_logon', $timestamp, PDO::PARAM_INT);
+        $statement->bindValue(':last_logon', $timestamp, PDO::PARAM_STR);
         $statement->execute();
 
         // Start the session and redirect to homepage
@@ -62,6 +63,12 @@
         $_SESSION['id'] = $db_user_id;
         $_SESSION['username'] = $client_username;
         $_SESSION['last_logon'] = $db_last_logon;
+
+        // Set SESSION admin flag if the user is an admin
+        if ($is_admin == 1) {
+            $_SESSION["is_admin"] = true;
+        }
+
         header("Location: /");
     }
 ?>

@@ -80,8 +80,8 @@
     <?php include("../includes/topbar.php") ?>
 
     <h2><?php echo($challenge_name); ?></h2>
-    <?php echo($challenge_text); ?>
-
+    <p><?php echo($challenge_text); ?></p>
+    
     <center>
         <form action="/challenge/?id=<?php echo($client_challenge_id); ?>" method="post" autocomplete="off" style='display: inline'>
             <input type="text" name="flag" placeholder="Enter your flag here!" id="flag"><br><br>
