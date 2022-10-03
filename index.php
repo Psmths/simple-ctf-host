@@ -46,7 +46,7 @@
                         $challenge_id = $challenge["id"];
                         $solved = query_user_solve_status($_SESSION["id"], $challenge_id);
                         if ($solved) {
-                            echo("<td class=\"status\">✓</td>");
+                            echo("<td class=\"status\">✅</td>");
                         } else {
                             echo("<td class=\"status\"></td>");
                         }

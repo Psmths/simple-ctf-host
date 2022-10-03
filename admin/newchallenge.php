@@ -3,17 +3,24 @@
     require_once "../includes/db.php";
     require_once "../includes/helpers.php";
     require_once "../includes/queries.php";
+    require_once "../includes/logging.php";
 
     session_start();
     // Client must be authenticated, otherwise redirect to homepage
-    if(!isset($_SESSION["authenticated"])) {
-        header("Location: /");    
+    if(!isset($_SESSION["authenticated"])) { 
+        logme(["Unauthenticated access to newchallenge.php."]);
+        header("Location: /");
     }
-    
+
+    $user_id = $_SESSION["id"]; // Get the user's ID
+
     // Client must be an administrator, otherwise redirect to homepage
     if(!isset($_SESSION["is_admin"])) {
+        logme(["userid", $user_id, "Non-administrative credential access to newchallenge.php."]);
         header("Location: /");    
     }
+
+    logme(["userid", $user_id, "Visited newchallenge.php."]);
 
     if (is_post_request()) { 
         create_new_challenge();
@@ -101,6 +108,8 @@
         }
 
         unset_returns();
+        $user_id = $_SESSION["id"]; // Get the user's ID
+        logme(["userid", $user_id, "New challenge created with ID:", $new_challenge_id]);
         $_SESSION['return_msg'] = "Challenge added! You may view it <a href=\"/challenge?id=".$new_challenge_id."\">here</a>.";
     }
     

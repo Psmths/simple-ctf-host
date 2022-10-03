@@ -1,7 +1,9 @@
 <?php
-
     require_once "../includes/config.php";
     require_once "../includes/db.php";
+    require_once "../includes/helpers.php";
+    require_once "../includes/config.php";
+    require_once "../includes/logging.php";
 
     if (isset($_POST['username'], $_POST['password'])) { 
         register();
@@ -64,9 +66,13 @@
         $_SESSION['username'] = $client_username;
         $_SESSION['last_logon'] = $db_last_logon;
 
+        $user_id = $_SESSION["id"]; // Get the user's ID
+        logme(["userid", $user_id, "Logged on."]);
+
         // Set SESSION admin flag if the user is an admin
         if ($is_admin == 1) {
             $_SESSION["is_admin"] = true;
+            logme(["userid", $user_id, "Authenticated as an administrator."]);
         }
 
         header("Location: /");

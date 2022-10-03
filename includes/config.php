@@ -15,4 +15,6 @@
     define('DB_USERNAME', 'username');
     define('DB_PASSWORD', 'password');
     define('DB_NAME', 'simplectfdb');
+
+    define('LOG_DIRECTORY', '/tmp/');
 ?>

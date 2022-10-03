@@ -1,7 +1,14 @@
 <?php
+    require_once "../includes/helpers.php";
+    require_once "../includes/config.php";
+    require_once "../includes/logging.php";
+
     session_start();
     $_SESSION = array();
     session_destroy();
+
+    $user_id = $_SESSION["id"]; // Get the user's ID
+    logme(["userid", $user_id, "Logged off."]);
 ?>
 <!doctype html>
 <html lang='en-US'>

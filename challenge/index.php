@@ -2,6 +2,8 @@
 
     require_once "../includes/config.php";
     require_once "../includes/db.php";
+    require_once "../includes/helpers.php";
+    require_once "../includes/logging.php";
 
     session_start();
 
@@ -24,6 +26,10 @@
     $statement->bindValue(':challenge_id', $client_challenge_id, PDO::PARAM_INT);
     $statement->execute();
     if ($statement->rowCount() == 0) {
+        logme([
+            "challenge", $client_challenge_id,
+            "Attempt to access non-existent challenge ID."
+        ]);
         header("Location: /");
     }
 
@@ -38,15 +44,27 @@
     $challenge_text = $result["text"];
     $challenge_flag = $result["flag"];
 
+    $user_id = $_SESSION["id"]; // Get the user's ID
+
+    logme([
+        "userid", $user_id,
+        "challenge", $client_challenge_id, 
+        "Challenge visited."
+    ]);
+
     // Handler for the client when they submit a flag for validation
     if (isset($_POST['flag'])) { 
-    
+        
         $client_flag = trim(filter_input(INPUT_POST,"flag",FILTER_SANITIZE_STRING));
         if (strcmp($client_flag, $challenge_flag) !== 0) {
             $_SESSION['return_msg'] = "That's not the right flag!";
+            logme([
+                "userid", $user_id,
+                "challenge", $client_challenge_id, 
+                "Incorrect flag submitted.",
+                "flag", $client_flag
+            ]);
         } else {
-            $user_id = $_SESSION["id"]; // Get the user's ID
-
             // Check if the user already solved this challenge
             $sql = 'SELECT * FROM solves WHERE challenge_id=:challenge_id AND user_id=:user_id';
             $statement = db()->prepare($sql);
@@ -55,6 +73,12 @@
             $statement->execute();
             if ($statement->rowCount() != 0) {
                 $_SESSION['return_msg'] = "Flag correct! This challenge has already been solved.";
+                logme([
+                    "userid", $user_id,
+                    "challenge", $client_challenge_id, 
+                    "Flag submitted, but the user already solved.",
+                    "flag", $client_flag
+                ]);
             } else {
                 // Add an entry to the solves database
                 $sql = 'INSERT INTO solves(challenge_id, user_id) VALUES(:challenge_id, :user_id)';
@@ -64,6 +88,12 @@
                 $statement->execute();
 
                 $_SESSION['return_msg'] = "Flag correct!";
+                logme([
+                    "userid", $user_id,
+                    "challenge", $client_challenge_id, 
+                    "Correct flag submitted.",
+                    "flag", $client_flag
+                ]);
             }
         }
     }
@@ -91,7 +121,7 @@
     
     <?php
         if(!empty($_SESSION['return_msg'])){
-            echo("<center><span>".$_SESSION['return_msg']."</span></center>");
+            create_modal($_SESSION['return_msg']);
             unset($_SESSION['return_msg']);
         }
     ?>
