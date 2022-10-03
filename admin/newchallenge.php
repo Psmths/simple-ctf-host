@@ -40,6 +40,8 @@
 
     function create_new_challenge() {
 
+        $user_id = $_SESSION["id"]; // Get the user's ID
+
         // Validate and sanitize the input
 
         $client_name = filter_input(INPUT_POST,"name",FILTER_SANITIZE_STRING);
@@ -51,7 +53,7 @@
         $client_subcategory = filter_input(INPUT_POST,"subcategory",FILTER_SANITIZE_STRING);
         $_SESSION['form_subcategory'] = $client_subcategory;
 
-        $client_text = filter_input(INPUT_POST,"text",FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+        $client_text = filter_input(INPUT_POST,"text",FILTER_SANITIZE_STRING);
         $_SESSION['form_text'] = $client_text;
 
         $validate_difficulty = filter_input(
@@ -90,7 +92,6 @@
 
         // Connect to database and get the new challenge's ID
         $new_challenge_id = challenge_name_to_id($client_name);
-
         // Add files to db if they were sent
         // Not sent would be indicated by error = int(4)
         if (!($_FILES["challenge_files"]["error"] == 4)) {
@@ -105,10 +106,16 @@
             $statement->bindValue(':challenge_id', $new_challenge_id, PDO::PARAM_INT);
             $statement->bindValue(':location', $final_file_path, PDO::PARAM_STR);
             $statement->execute();
+
+            logme(["userid", $user_id, 
+            "File uploaded for challenge:", $new_challenge_id,
+            "name:", $file_name,
+            "size:", $_FILES["challenge_files"]["size"]
+        ]);
         }
 
         unset_returns();
-        $user_id = $_SESSION["id"]; // Get the user's ID
+        
         logme(["userid", $user_id, "New challenge created with ID:", $new_challenge_id]);
         $_SESSION['return_msg'] = "Challenge added! You may view it <a href=\"/challenge?id=".$new_challenge_id."\">here</a>.";
     }

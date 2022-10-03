@@ -159,7 +159,7 @@
     function challenge_name_to_id($challenge_name) {
         $sql = 'SELECT id FROM challenges WHERE name=:challenge_name';
         $statement = db()->prepare($sql);
-        $statement->bindValue('challenge_name', $challenge_name, PDO::PARAM_INT);
+        $statement->bindValue('challenge_name', $challenge_name, PDO::PARAM_STR);
         $statement->execute();
         $result = $statement->fetch();
         return $result["id"];
