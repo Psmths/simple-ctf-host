@@ -16,6 +16,7 @@
         }
         return $fmt_diff_string;
     }
+    
     function create_modal($message) {
         echo('<div id="myModal" class="modal"><div class="modal-content">'.$message.'<center><input class="close" value="Close"></center></div></div>');
         echo('

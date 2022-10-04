@@ -1,4 +1,7 @@
 <?php
+
+define('PAGE_TITLE', 'New Challenge');
+
     require_once "../includes/config.php";
     require_once "../includes/db.php";
     require_once "../includes/helpers.php";
@@ -44,13 +47,13 @@
 
         // Validate and sanitize the input
 
-        $client_name = filter_input(INPUT_POST,"name",FILTER_SANITIZE_STRING);
+        $client_name = trim(filter_input(INPUT_POST,"name",FILTER_SANITIZE_STRING));
         $_SESSION['form_name'] = $client_name;
 
-        $client_category = filter_input(INPUT_POST,"category",FILTER_SANITIZE_STRING);
+        $client_category = trim(filter_input(INPUT_POST,"category",FILTER_SANITIZE_STRING));
         $_SESSION['form_category'] = $client_category;
 
-        $client_subcategory = filter_input(INPUT_POST,"subcategory",FILTER_SANITIZE_STRING);
+        $client_subcategory = trim(filter_input(INPUT_POST,"subcategory",FILTER_SANITIZE_STRING));
         $_SESSION['form_subcategory'] = $client_subcategory;
 
         $client_text = filter_input(INPUT_POST,"text",FILTER_SANITIZE_STRING);
@@ -66,10 +69,10 @@
                     'max_range' => MAX_CHALLENGE_DIFFICULTY
                 )
         ));
-        $client_difficulty = filter_input(INPUT_POST,"difficulty",FILTER_SANITIZE_NUMBER_INT);
+        $client_difficulty = trim(filter_input(INPUT_POST,"difficulty",FILTER_SANITIZE_NUMBER_INT));
         $_SESSION['form_difficulty'] = $client_difficulty;
 
-        $client_flag = filter_input(INPUT_POST,"flag",FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+        $client_flag = trim(filter_input(INPUT_POST,"flag",FILTER_SANITIZE_FULL_SPECIAL_CHARS));
         $_SESSION['form_flag'] = $client_flag;
 
 
@@ -124,8 +127,7 @@
 <!doctype html>
 <html lang='en-US'>
     <head>
-        <title><?php echo(CTF_NAME); ?> - Create New Challenge</title>
-        <?php include("../includes/html-head.html") ?>
+        <?php include("../includes/head.php") ?>
     </head>
     <body>
 
@@ -136,17 +138,17 @@
 
     <center>
         <form action="/admin/newchallenge.php" method="post" autocomplete="off" style='display: inline' enctype="multipart/form-data">
-            <input type="text" name="name" placeholder="Challenge Name" <?php echo("value=\"".$_SESSION['form_name']."\""); ?> id="name" required><br><br>
+            <input type="text" name="name" placeholder="Challenge Name" <?php if (isset($_SESSION['form_name'])) echo("value=\"".$_SESSION['form_name']."\""); ?> id="name" required><br><br>
 
-            <textarea type="text" name="text" placeholder="Challenge Text"id="text"><?php echo($_SESSION['form_text']); ?></textarea><br><br>
+            <textarea type="text" name="text" placeholder="Challenge Text (Markdown)"id="text"><?php if (isset($_SESSION['form_text'])) echo($_SESSION['form_text']); ?></textarea><br><br>
 
-            <input type="text" name="category" placeholder="Challenge Category" <?php echo("value=\"".$_SESSION['form_category']."\""); ?> id="category" required><br><br>
+            <input type="text" name="category" placeholder="Challenge Category" <?php if (isset($_SESSION['form_category'])) echo("value=\"".$_SESSION['form_category']."\""); ?> id="category" required><br><br>
 
-            <input type="text" name="subcategory" placeholder="Challenge Topic" <?php echo("value=\"".$_SESSION['form_subcategory']."\""); ?> id="subcategory" required><br><br>
+            <input type="text" name="subcategory" placeholder="Challenge Topic" <?php if (isset($_SESSION['form_subcategory'])) echo("value=\"".$_SESSION['form_subcategory']."\""); ?> id="subcategory" required><br><br>
 
-            <input type="text" name="difficulty" placeholder="Difficulty (0-5)" <?php echo("value=\"".$_SESSION['form_difficulty']."\""); ?> id="difficulty" required><br><br>
+            <input type="text" name="difficulty" placeholder="Difficulty" <?php if (isset($_SESSION['form_difficulty'])) echo("value=\"".$_SESSION['form_difficulty']."\""); ?> id="difficulty" required><br><br>
 
-            <input type="text" name="flag" placeholder="Challenge Flag" <?php echo("value=\"".$_SESSION['form_flag']."\""); ?> id="flag" required><br><br>
+            <input type="text" name="flag" placeholder="Challenge Flag" <?php if (isset($_SESSION['form_flag'])) echo("value=\"".$_SESSION['form_flag']."\""); ?> id="flag" required><br><br>
 
             <center>
                 <span>Challenge Files (Optional)</span><br><br>

@@ -1,5 +1,7 @@
 <?php
 
+    define('PAGE_TITLE', 'Leaderboard');
+
     require_once "../includes/config.php";
     require_once "../includes/db.php";
     require_once "../includes/queries.php";
@@ -29,8 +31,7 @@
 <!doctype html>
 <html lang='en-US'>
     <head>
-        <title>Simple CTF Framework</title>
-        <?php include("../includes/html-head.html") ?>
+        <?php include("../includes/head.php") ?>
     </head>
     <body>
 
@@ -52,7 +53,6 @@
             echo($html);
         ?>
     </table>
-
 
     <?php include("../includes/footer.php") ?>
 

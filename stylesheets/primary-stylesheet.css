@@ -1,283 +1,325 @@
 /* Color settings */
 :root {
-    --body-outline: #ffffff;
-    --text-color-default: #ffffff;
-    --background-color: #131416;
-    --primary-color: #530404;
-    --secondary-color: #ffffff;
-    --link-focus: #0000ff;
-    --link-color: #ff0000;
+	--body-outline: #ffffff;
+	--text-color-default: #ffffff;
+	--background-color: #131416;
+	--table-background: #262626;
+	--primary-color: #530404;
+	--secondary-color: #ffffff;
+	--link-focus: #0000ff;
+	--link-color: #ff0000;
 }
-/* Remove default margins */
+
 body, h1, h2, h3, h4, p, ul[class], ol[class], li, figure, figcaption, dl, dd {
-    margin: 0;
+	margin: 0;
 }
-/* Default font size and smooth scrolling */
+
 html {
-    font-size: 1.2rem;
+	font-size: 1.2rem;
 }
+
 @media (prefers-reduced-motion: no-preference) {
-    html {
-        scroll-behavior: smooth;
-    }
+	html {
+		scroll-behavior: smooth;
+	}
 }
+
 body {
-    font-family: monospace !important;
-    line-height: 1.5;
-    margin: 2% auto !important;
-    border: 2px solid var(--body-outline);
-    max-width: 100ch;
-    min-height: 0vh;
-    overflow-x: hidden;
-    padding: 1.25rem;
-    color: var(--text-color-default);
-    background-color: var(--background-color);
-    text-rendering: optimizeLegibility;
-  }
+	font-family: monospace !important;
+	line-height: 1.5;
+	margin: 2% auto !important;
+	border: 2px solid var(--body-outline);
+	max-width: 100ch;
+	min-height: 0vh;
+	overflow-x: hidden;
+	padding: 1.25rem;
+	color: var(--text-color-default);
+	background-color: var(--background-color);
+	text-rendering: optimizeLegibility;
+}
+
 p {
-    text-align: justify;
-    hyphens: auto;
-    -webkit-hyphens: auto;
-    -moz-hyphens: auto;
-    margin-top: 1rem;
-    margin-bottom: 1rem;
+	text-align: left;
+	hyphens: auto;
+	-webkit-hyphens: auto;
+	-moz-hyphens: auto;
+	margin-top: 1rem;
+	margin-bottom: 1rem;
 }
+
 a, a:visited {
-    color: var(--link-color);
-    font-family: monospace;
-    text-decoration: none;
+	color: var(--link-color);
+	font-family: monospace;
+	text-decoration: none;
 }
+
 a:focus {
-    outline-offset: 2px;
-    outline: 2px solid var(--link-focus);
+	outline-offset: 2px;
+	outline: 2px solid var(--link-focus);
 }
+
 a:hover {
-    color: var(--background-color);
-    background-color: var(--text-color-default);
+	color: var(--background-color);
+	background-color: var(--text-color-default);
 }
+
 h1 {
-    font-size: 1.7rem;
-    line-height: 2rem;
-    background-color: var(--primary-color);
-    color: var(--text-color-default);
-    padding: 2%;    
+	font-size: 1.7rem;
+	line-height: 2rem;
+	background-color: var(--primary-color);
+	color: var(--text-color-default);
+	padding: 2%;
 }
+
 h2 {
-    text-align: center;
-    font-size: 1rem;
-    line-height: 0.5rem;
-    background-color: var(--secondary-color);
-    color: var(--background-color);
-    padding: 1%;
-    margin-top: 1.5rem;
-    margin-bottom: 1.5rem;
+	text-align: center;
+	font-size: 1rem;
+	line-height: 0.5rem;
+	background-color: var(--secondary-color);
+	color: var(--background-color);
+	padding: 1%;
+	margin-top: 1.5rem;
+	margin-bottom: 1.5rem;
 }
+
 .topbar {
-    margin-top: 1rem;
-    margin-bottom: 1rem;  
+	margin-top: 1rem;
+	margin-bottom: 1rem;
 }
+
 span {
-    margin-top: 1rem;
-    margin-bottom: 1rem;  
+	margin-top: 1rem;
+	margin-bottom: 1rem;
 }
+
 input[type=submit] {
-    background-color: var(--primary-color);
-    border: none;
-    color: white;
-    text-align: center;
-    font-family: monospace;
-    font-size: 0.75rem;
-    padding: 1%;
-    cursor: pointer;
+	background-color: var(--primary-color);
+	border: none;
+	color: var(--text-color-default);
+	text-align: center;
+	font-family: monospace;
+	font-size: 0.75rem;
+	padding: 1%;
+	cursor: pointer;
 }
+
 input[type=file] {
-    background: #262626;
-    color: white;
-    border: 1px solid white;
-    text-align: left;
-    font-family: monospace;
-    font-size: 0.75rem;
-    padding: 1%;
-    width: 50%;
-    font-size: 0.75rem;
+	background: var(--background-color);
+	filter: brightness(225%);
+	color: var(--text-color-default);
+	border: 1px solid var(--body-outline);
+	text-align: left;
+	font-family: monospace;
+	font-size: 0.75rem;
+	padding: 1%;
+	width: 50%;
+	font-size: 0.75rem;
 }
+
 input[type=submit]:hover, input[type=submit]:focus {
-    color: black !important;
-    background-color: white !important;
+	color: var(--background-color);
+	background-color: var(--text-color-default);
 }
+
 input[type=text] {
-    background: #262626;
-    color: white;
-    border: 1px solid white;
-    text-align: left;
-    font-family: monospace;
-    font-size: 0.75rem;
-    padding: 1%;
-    width: 50%;
-    font-size: 0.75rem;
+	background: var(--background-color);
+	filter: brightness(225%);
+	color: var(--text-color-default);
+	border: 1px solid var(--body-outline);
+	text-align: left;
+	font-family: monospace;
+	font-size: 0.75rem;
+	padding: 1%;
+	width: 50%;
+	font-size: 0.75rem;
 }
+
 textarea {
-    background: #262626;
-    color: white;
-    border: 1px solid white;
-    text-align: left;
-    font-family: monospace;
-    font-size: 0.75rem;
-    padding: 1%;
-    width: 50%;
-    font-size: 0.75rem;
-    height: 30em;
+	background: var(--background-color);
+	filter: brightness(225%);
+	color: var(--text-color-default);
+	border: 1px solid var(--body-outline);
+	text-align: left;
+	font-family: monospace;
+	font-size: 0.75rem;
+	padding: 1%;
+	min-width: 50%;
+	font-size: 0.75rem;
+	min-height: 30em;
+	max-width: 90%;
+	max-height: 50em;
 }
+
 input[type=password] {
-    background: #262626;
-    color: white;
-    border: 1px solid white;
-    text-align: left;
-    font-family: monospace;
-    font-size: 0.75rem;
-    padding: 1%;
-    width: 50%;
-    font-size: 0.75rem;
+	background: var(--background-color);
+	filter: brightness(225%);
+	color: var(--text-color-default);
+	border: 1px solid var(--body-outline);
+	text-align: left;
+	font-family: monospace;
+	font-size: 0.75rem;
+	padding: 1%;
+	width: 50%;
+	font-size: 0.75rem;
 }
+
 select {
-    background: #262626;
-    color: white;
-    border: 1px solid white;
-    text-align: left;
-    font-family: monospace;
-    font-size: 0.75rem;
-    padding: 1%;
-    width: 50%;
-    font-size: 0.75rem;
+	background: var(--background-color);
+	filter: brightness(225%);
+	color: var(--text-color-default);
+	border: 1px solid var(--body-outline);
+	text-align: left;
+	font-family: monospace;
+	font-size: 0.75rem;
+	padding: 1%;
+	width: 50%;
+	font-size: 0.75rem;
 }
+
 table {
-    width: 100%;
-    font-size: 1rem;
+	width: 100%;
+	font-size: 1rem;
 }
-tr, td, th { 
-    border: 1px solid #131416;
-    padding: 1%;
-    font-family: monospace;
+
+tr, td, th {
+	border: 1px solid var(--background-color);
+	padding: 1%;
+	font-family: monospace;
 }
+
 th {
-    background-color: #530404;
-    text-align: center;
-    font-size: 1rem;
+	background-color: var(--primary-color);
+	text-align: center;
+	font-size: 1rem;
 }
+
 tr, td {
-    background-color: #1e2124;
+	background-color: var(--table-background);
 }
+
 .status {
-    width: 10%;
-    text-align: center;
-    font-size: 2em;
+	width: 10%;
+	text-align: center;
+	font-size: 2em;
 }
+
 .name {
-    text-align: left;
-    width: 20%;
+	text-align: left;
+	width: 20%;
 }
+
 .topic {
-    width: 20%;
-    text-align: left;
+	width: 20%;
+	text-align: left;
 }
+
 .difficulty {
-    width: 20%;
-    font-size: 2em;
-    text-align: left;
-    line-height: 1em;
+	width: 20%;
+	font-size: 2em;
+	text-align: left;
+	line-height: 1em;
 }
+
 .points {
-    width: 10%;
-    text-align: center;
+	width: 10%;
+	text-align: center;
 }
+
 .solves {
-    width: 10%;
-    text-align: center;
+	width: 10%;
+	text-align: center;
 }
+
 .position {
-    text-align: center;
-    width: 10%;
-    font-size: 1.7em;
+	text-align: center;
+	width: 10%;
+	font-size: 1.7em;
 }
+
 .username {
-    text-align: left;
-    width: 80%;
+	text-align: left;
+	width: 80%;
 }
+
 .score {
-    text-align: center;
-    width: 10%;
+	text-align: center;
+	width: 10%;
 }
+
 li {
-    list-style: none;
+	list-style: none;
 }
+
 li::before {
-    content: ">";
-    color: var(--link-color);
-    margin-inline-end: 1ch;
-  }
+	content: ">";
+	color: var(--link-color);
+	margin-inline-end: 1ch;
+}
 /* Modal Content */
 .modal-content {
-    background-color: #1e2124;
-    margin: auto;
-    padding: 3%;
-    border: 2px solid white;
-    width: 80%;
-    color: white;
-    font-family: monospace;
-    font-size: 1em;
-  }
-  /* The Close Button */
-  .close {
-    background-color: #530404;
-    border: none;
-    color: white;
-    text-align: center;
-    font-family: monospace;
-    font-size: 0.75rem;
-    padding: 1%;
-    cursor: pointer;
-  }
-  .close:hover, .close:focus {
-    color: black !important;
-    background-color: white !important;
-  }
-  /* The Home Button */
-  .home {
-    background-color: #530404;
-    border: none;
-    color: white;
-    text-align: center;
-    font-family: monospace;
-    font-size: 0.75rem;
-    padding: 1%;
-    cursor: pointer;
-    margin-left: 1%;
-  }
-  .home:hover, .home:focus {
-    color: black !important;
-    background-color: white !important;
-  }
-  /* The Modal (background) */
+	background-color: #1e2124;
+	margin: auto;
+	padding: 3%;
+	border: 2px solid var(--body-outline);
+	width: 80%;
+	color: var(--text-color-default);
+	font-family: monospace;
+	font-size: 1em;
+}
+
+.close {
+	background-color: var(--primary-color);
+	border: none;
+	color: var(--text-color-default);
+	text-align: center;
+	font-family: monospace;
+	font-size: 0.75rem;
+	padding: 1%;
+	cursor: pointer;
+}
+
+.close:hover, .close:focus {
+	color: var(--background-color);
+	background-color: var(--text-color-default);
+}
+
+.home {
+	background-color: var(--primary-color);
+	border: none;
+	color: var(--text-color-default);
+	text-align: center;
+	font-family: monospace;
+	font-size: 0.75rem;
+	padding: 1%;
+	cursor: pointer;
+	margin-left: 1%;
+}
+
+.home:hover, .home:focus {
+	color: var(--background-color);
+	background-color: var(--text-color-default);
+}
+
 .modal {
-    display: none;
-   /* Hidden by default */
-    position: fixed;
-   /* Stay in place */
-    z-index: 10;
-   /* Sit on top */
-    padding-top: 100px;
-   /* Location of the box */
-    left: 0;
-    top: 0;
-    width: 100%;
-   /* Full width */
-    height: 100%;
-   /* Full height */
-    overflow: auto;
-   /* Enable scroll if needed */
-    background-color: rgb(0,0,0);
-   /* Fallback color */
-    background-color: rgba(0,0,0,0.2);
-   /* Black w/ opacity */
-    backdrop-filter: blur(5px) saturate(0%);
+	display: none;
+	position: fixed;
+	z-index: 10;
+	padding-top: 100px;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	overflow: auto;
+	background-color: rgb(0,0,0);
+	background-color: rgba(0,0,0,0.2);
+	backdrop-filter: blur(5px) saturate(0%);
+}
+pre {
+	padding: 1%;
+	max-width: 100%;
+	overflow: auto;
+	border-radius: 0px;
+	background: var(--table-background);
+	color: white;
+	border: 1px solid white;
   }

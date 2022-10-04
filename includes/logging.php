@@ -17,9 +17,9 @@
         $logline_array = array(
             $timestamp,
             $client_ip,
-            implode("\t",$message)
+            implode(LOGFILE_SEPARATOR,$message)
         );
 
-        file_put_contents(LOG_DIRECTORY.date("j.n.Y").'.log', implode("\t",$logline_array).PHP_EOL, FILE_APPEND);
+        file_put_contents(LOG_DIRECTORY.LOG_NAME.'.log', implode("\t",$logline_array).PHP_EOL, FILE_APPEND);
     }
 ?>

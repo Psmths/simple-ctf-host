@@ -4,6 +4,7 @@
     require_once "../includes/db.php";
     require_once "../includes/helpers.php";
     require_once "../includes/logging.php";
+    require_once "../includes/Parsedown.php";
 
     session_start();
 
@@ -41,10 +42,15 @@
     $result = $statement->fetch();
 
     $challenge_name = $result["name"];
-    $challenge_text = $result["text"];
+    
     $challenge_flag = $result["flag"];
 
+    $Parsedown = new Parsedown();
+    $challenge_text = $Parsedown->text($result["text"]);
+
     $user_id = $_SESSION["id"]; // Get the user's ID
+
+    define('PAGE_TITLE', $challenge_name);
 
     logme([
         "userid", $user_id,
@@ -102,7 +108,7 @@
 <html lang='en-US'>
     <head>
         <title>Simple CTF Framework</title>
-        <?php include("../includes/html-head.html") ?>
+        <?php include("../includes/head.php") ?>
     </head>
     <body>
 

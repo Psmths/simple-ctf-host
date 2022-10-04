@@ -1,4 +1,7 @@
 <?php
+
+define('PAGE_TITLE', '');
+
     session_start();
     require_once "./includes/db.php";
     require_once "./includes/config.php";
@@ -8,8 +11,7 @@
 <!doctype html>
 <html lang='en-US'>
     <head>
-        <title>Simple CTF Framework</title>
-        <?php include("./includes/html-head.html") ?>
+        <?php include("./includes/head.php") ?>
     </head>
     <body>
 
@@ -40,6 +42,7 @@
                         <th>Solves</th>
                     </tr>
                 ");
+                
                 foreach($category as $challenges){
                     foreach($challenges as $challenge) {
                         echo("<tr>");

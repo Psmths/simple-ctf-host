@@ -1,4 +1,7 @@
 <?php
+
+    define('PAGE_TITLE', 'Delete Challenge');
+
     require_once "../includes/config.php";
     require_once "../includes/db.php";
     require_once "../includes/helpers.php";
@@ -48,8 +51,7 @@
 <!doctype html>
 <html lang='en-US'>
     <head>
-        <title><?php echo(CTF_NAME); ?> - Delete Challenge</title>
-        <?php include("../includes/html-head.html") ?>
+        <?php include("../includes/head.php") ?>
     </head>
     <body>
 

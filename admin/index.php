@@ -1,4 +1,7 @@
 <?php
+
+    define('PAGE_TITLE', 'Admin Panel');
+
     require_once "../includes/db.php";
     require_once "../includes/config.php";
     require_once "../includes/queries.php";
@@ -25,8 +28,7 @@
 <!doctype html>
 <html lang='en-US'>
     <head>
-        <title>Simple CTF Framework</title>
-        <?php include("../includes/html-head.html") ?>
+        <?php include("../includes/head.php") ?>
     </head>
     <body>
 
@@ -46,6 +48,12 @@
     <h4>Users</h4>
     <ul>
         <li><a href="/admin/modifyuser.php">Modify User</a></li>
+    </ul>
+
+    <h4>Miscellaneous</h4>
+    <ul>
+        <li><a href="/admin/stats.php">View Statistics</a></li>
+        <li><a href="/admin/viewlog.php">View Log</a></li>
     </ul>
 
     

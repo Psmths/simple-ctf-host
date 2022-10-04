@@ -125,6 +125,52 @@
         return $result;
     }
 
+    /* Get a count of challenges */
+    function get_num_challenges() {
+        $sql = 'SELECT * FROM challenges';
+        $statement = db()->prepare($sql);
+        $statement->execute();
+        $result = $statement->fetchAll();
+        return sizeof($result);
+    }
+
+    /* Get a count of accounts */
+    function get_num_accounts() {
+        $sql = 'SELECT * FROM accounts';
+        $statement = db()->prepare($sql);
+        $statement->execute();
+        $result = $statement->fetchAll();
+        return sizeof($result);
+    }
+
+    /* Get a count of solves */
+    function get_num_solves() {
+        $sql = 'SELECT * FROM solves';
+        $statement = db()->prepare($sql);
+        $statement->execute();
+        $result = $statement->fetchAll();
+        return sizeof($result);
+    }
+
+    /* Get a list of admins */
+    function get_admins() {
+        $sql = 'SELECT username FROM accounts where is_admin=1';
+        $statement = db()->prepare($sql);
+        $statement->execute();
+        $result = $statement->fetchAll();
+        return $result;
+    }
+
+    /* Check to see if a user is an admin by their user ID */
+    function query_is_admin($user_id) {
+        $sql = 'SELECT is_admin FROM accounts WHERE id=:user_id';
+        $statement = db()->prepare($sql);
+        $statement->bindValue('user_id', $user_id, PDO::PARAM_INT);
+        $statement->execute();
+        $result = $statement->fetchAll();
+        return $result;
+    }
+
     /* Query to get a sorted leaderboard array */
     function get_leaderboard_array() {
         $leaderboard_array = array();
@@ -133,6 +179,10 @@
         $user_id_array = query_all_user_ids();
 
         foreach ($user_id_array as $user_id) {
+            // Check if we want to hide administrators
+            if (HIDE_ADMINS_FROM_LEADERBOARD) {
+                if (query_is_admin($user_id)) continue; 
+            }
             array_push($leaderboard_array, array(
                 "user_id" => $user_id, 
                 "score" => calc_user_points($user_id))

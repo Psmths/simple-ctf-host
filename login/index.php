@@ -1,4 +1,7 @@
 <?php
+
+    define('PAGE_TITLE', 'Login');
+
     require_once "../includes/config.php";
     require_once "../includes/db.php";
     require_once "../includes/helpers.php";
@@ -81,8 +84,7 @@
 <!doctype html>
 <html lang='en-US'>
     <head>
-        <title>Simple CTF Framework - Login</title>
-        <?php include("../includes/html-head.html") ?>
+        <?php include("../includes/head.php") ?>
     </head>
     <body>
 
@@ -93,8 +95,8 @@
 
     <center>
         <form action="/login" method="post" autocomplete="off" style='display: inline'>
-            <input type="text" name="username" placeholder="Username" id="username"><br><br>
-            <input type="password" name="password" placeholder="Password" id="password"><br><br>
+            <input type="text" name="username" placeholder="Username" id="username" required><br><br>
+            <input type="password" name="password" placeholder="Password" id="password" required><br><br>
             <input type="submit" value="Register" style='display: inline'><br><br>
         </form>
     </center>

@@ -1,20 +1,21 @@
 <?php
+
+define('PAGE_TITLE', 'Logout');
+
     require_once "../includes/helpers.php";
     require_once "../includes/config.php";
     require_once "../includes/logging.php";
 
     session_start();
+    $user_id = $_SESSION["id"]; // Get the user's ID
     $_SESSION = array();
     session_destroy();
-
-    $user_id = $_SESSION["id"]; // Get the user's ID
     logme(["userid", $user_id, "Logged off."]);
 ?>
 <!doctype html>
 <html lang='en-US'>
     <head>
-        <title>Simple CTF Framework - Logged Out</title>
-        <?php include("../includes/html-head.html") ?>
+        <?php include("../includes/head.php") ?>
     </head>
     <body>
 
