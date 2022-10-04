@@ -1,5 +1,12 @@
-# simple-ctf-template
-A very simple template website for running a small CTF. Does not track scores, no accounts, etc. Initially created for a small educational university CTF to introduce students to this type of experience. Work in progress!
+# Simple CTF Host
+A very simple hosting system for presenting a small CTF event. Originally created for an introductory CTF for Nassau University, LI, NY. Provides quick installation and some neat features such as:
+
+ - Accounts and progress tracking
+ - Challenge scoring system
+ - Leaderboard
+ - Web administration utilities
+ - Ability to easily add, modify, delete challenges
+ - Ability to allow files to be added to challenges for users to download
 
 ## Creating the Database Tables
 ```
