@@ -246,10 +246,9 @@
         // Get an array of all the challenge types
         $categories = get_categories_array();
         foreach ($categories as $category) {
-            $category_array = get_category_challenges($category);
             array_push($challenge_array, array(
                 "category" => $category, 
-                "challenges" => $category_array)
+                "challenges" => get_category_challenges($category))
             );
         }
         return $challenge_array;

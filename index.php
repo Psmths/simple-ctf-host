@@ -65,8 +65,9 @@ define('PAGE_TITLE', '');
 
                     echo("</tr>");
                     }
-                }
                 echo("</table>");
+                }
+                
             
         }
     ?>
