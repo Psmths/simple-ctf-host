@@ -42,33 +42,32 @@ define('PAGE_TITLE', '');
                         <th>Solves</th>
                     </tr>
                 ");
-                
-                foreach($category as $challenges){
-                    foreach($challenges as $challenge) {
-                        echo("<tr>");
-                        $challenge_id = $challenge["id"];
-                        $solved = query_user_solve_status($_SESSION["id"], $challenge_id);
-                        if ($solved) {
-                            echo("<td class=\"status\">✅</td>");
-                        } else {
-                            echo("<td class=\"status\"></td>");
-                        }
 
-                        echo("<td class=\"name\"><a href=\"/challenge/?id=".$challenge_id."\">".$challenge["name"]."</a></td>");
-                        echo("<td class=\"topic\">".$challenge["subcategory"]."</td>");
-                        echo("<td class=\"difficulty\">".format_difficulty($challenge["difficulty"])."</td>");
+                foreach($category["challenges"] as $challenge) {
+                    echo("<tr>");
+                    $challenge_id = $challenge["id"];
+                    $solved = query_user_solve_status($_SESSION["id"], $challenge_id);
+                    if ($solved) {
+                        echo("<td class=\"status\">✅</td>");
+                    } else {
+                        echo("<td class=\"status\"></td>");
+                    }
 
-                        $challenge_points_value = query_challenge_points($challenge_id);
-                        echo("<td class=\"points\">".$challenge_points_value."</td>");
+                    echo("<td class=\"name\"><a href=\"/challenge/?id=".$challenge_id."\">".$challenge["name"]."</a></td>");
+                    echo("<td class=\"topic\">".$challenge["subcategory"]."</td>");
+                    echo("<td class=\"difficulty\">".format_difficulty($challenge["difficulty"])."</td>");
 
-                        $challenge_solves = query_challenge_solves($challenge_id);
-                        echo("<td class=\"solves\">".$challenge_solves."</td>");
+                    $challenge_points_value = query_challenge_points($challenge_id);
+                    echo("<td class=\"points\">".$challenge_points_value."</td>");
 
-                        echo("</tr>");
+                    $challenge_solves = query_challenge_solves($challenge_id);
+                    echo("<td class=\"solves\">".$challenge_solves."</td>");
+
+                    echo("</tr>");
                     }
                 }
                 echo("</table>");
-            }
+            
         }
     ?>
 

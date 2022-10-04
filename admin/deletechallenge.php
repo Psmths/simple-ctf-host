@@ -13,6 +13,7 @@
     if(!isset($_SESSION["authenticated"])) { 
         logme(["Unauthenticated access to deletechallenge.php."]);
         header("Location: /");
+        return;
     }
 
     $user_id = $_SESSION["id"]; // Get the user's ID
@@ -20,7 +21,8 @@
     // Client must be an administrator, otherwise redirect to homepage
     if(!isset($_SESSION["is_admin"])) {
         logme(["userid", $user_id, "Non-administrative credential access to deletechallenge.php."]);
-        header("Location: /");    
+        header("Location: /");
+        return;  
     }
 
     logme(["userid", $user_id, "Visited deletechallenge.php."]);

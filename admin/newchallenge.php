@@ -13,6 +13,7 @@ define('PAGE_TITLE', 'New Challenge');
     if(!isset($_SESSION["authenticated"])) { 
         logme(["Unauthenticated access to newchallenge.php."]);
         header("Location: /");
+        return;
     }
 
     $user_id = $_SESSION["id"]; // Get the user's ID
@@ -20,7 +21,8 @@ define('PAGE_TITLE', 'New Challenge');
     // Client must be an administrator, otherwise redirect to homepage
     if(!isset($_SESSION["is_admin"])) {
         logme(["userid", $user_id, "Non-administrative credential access to newchallenge.php."]);
-        header("Location: /");    
+        header("Location: /");
+        return;
     }
 
     logme(["userid", $user_id, "Visited newchallenge.php."]);

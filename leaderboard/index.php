@@ -10,7 +10,8 @@
 
     // Client must be authenticated, otherwise redirect to homepage
     if(!isset($_SESSION["authenticated"])) {
-        header("Location: /");    
+        header("Location: /");
+        return;    
     }
 
     $leaderboard_array = get_leaderboard_array();

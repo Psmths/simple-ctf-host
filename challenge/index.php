@@ -10,12 +10,14 @@
 
     // Client must be authenticated, otherwise redirect to homepage
     if(!isset($_SESSION["authenticated"])) {
-        header("Location: /");    
+        header("Location: /");
+        return; 
     }
 
     // Client must supply a challenge ID, otherwise redirect to homepage
     if (!isset($_GET['id'])) { 
         header("Location: /");
+        return;
     }
 
     // Sanitize the client challenge ID
